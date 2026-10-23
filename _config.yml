@@ -1,0 +1,21 @@
+# 網站基本設定（改完 push 上去就會更新）
+title: 我的小站
+description: 關於我、專案紀錄與生活日記
+author: weif3383-cloud
+lang: zh-TW
+timezone: Asia/Taipei
+
+theme: minima
+permalink: /:year/:month/:day/:title/
+
+# 上方選單顯示的頁面
+header_pages:
+  - about.md
+  - projects.md
+  - life.md
+
+minima:
+  social_links:
+    github: weif3383-cloud
+
+markdown: kramdown
