@@ -237,6 +237,9 @@ table tr:first-child th { border-top: 0; }
 }
 .hero-slide.is-active { opacity: 1; }
 
+/* 個別圖片的裁切位置：大螢幕上下會被裁掉時，要保留哪裡（0% = 最上面，100% = 最下面） */
+.hero-slide[src$="/04.jpg"] { object-position: center 15%; }   /* 初音：保留頭部 */
+
 .hero-dots {
   position: absolute;
   left: 0;
