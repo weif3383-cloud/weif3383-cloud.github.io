@@ -27,6 +27,8 @@ permalink: /about/
   <a class="contact-btn" href="https://www.instagram.com/thenoobjelly/" target="_blank" rel="noopener">Instagram</a>
 </div>
 
+<p class="image-credit">首頁輪播圖出處：流螢 — <a href="https://www.pixiv.net/artworks/136379199" target="_blank" rel="noopener">Pixiv #136379199</a>。其他圖片收集自網路，如果你是作者並希望標註或移除，歡迎聯絡我。</p>
+
 <script>
   // 點 Discord 按鈕時複製使用者名稱，按鈕文字會暫時變成「已複製！」
   document.querySelectorAll(".contact-btn[data-copy]").forEach(function (btn) {
