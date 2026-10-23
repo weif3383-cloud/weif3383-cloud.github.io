@@ -272,3 +272,33 @@ table tr:first-child th { border-top: 0; }
 }
 
 .post-empty { color: var(--muted); }
+
+/* ---------- 關於我：聯絡按鈕 ---------- */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+.contact-btn,
+.contact-btn:visited {
+  display: inline-block;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  transition: background .2s, color .2s, transform .2s;
+}
+.contact-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
