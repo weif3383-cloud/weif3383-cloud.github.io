@@ -14,8 +14,10 @@ header_pages:
   - projects.md
   - life.md
 
+# 頁尾顯示 GitHub 連結
+github_username: weif3383-cloud
+
 minima:
-  social_links:
-    github: weif3383-cloud
+  date_format: "%Y-%m-%d"
 
 markdown: kramdown

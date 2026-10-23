@@ -1,0 +1,222 @@
+---
+# 這兩行 --- 一定要留著，Jekyll 才會處理這個檔案
+---
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap");
+@import "minima";
+
+/* ==============================
+   自訂外觀：想換顏色只要改這一段
+   ============================== */
+:root {
+  --bg: #faf7f2;          /* 背景 */
+  --surface: #ffffff;     /* 卡片 */
+  --text: #2d2a26;        /* 主要文字 */
+  --muted: #7a736a;       /* 次要文字（日期等） */
+  --border: #ebe5dc;      /* 邊框 */
+  --accent: #2f7d74;      /* 主色（連結、按鈕） */
+  --accent-soft: #e3f1ee; /* 主色淡色 */
+  --shadow: 0 1px 2px rgba(45, 42, 38, .04), 0 4px 16px rgba(45, 42, 38, .06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1a18;
+    --surface: #252321;
+    --text: #ebe6de;
+    --muted: #a39b90;
+    --border: #36332f;
+    --accent: #6cc3b7;
+    --accent-soft: #23332f;
+    --shadow: 0 4px 16px rgba(0, 0, 0, .3);
+  }
+}
+
+/* ---------- 基本 ---------- */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans TC", -apple-system, "Segoe UI", "Microsoft JhengHei", sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+  letter-spacing: .02em;
+}
+
+h1, h2, h3, h4,
+.site-title, .post-title, .page-heading {
+  font-family: "Noto Serif TC", "Noto Sans TC", serif;
+  font-weight: 700;
+  letter-spacing: .03em;
+  color: var(--text);
+}
+
+a { color: var(--accent); }
+a:visited { color: var(--accent); }
+a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.wrapper { max-width: 760px; }
+
+/* ---------- 頂部選單 ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-top: 0;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.site-title,
+.site-title:visited {
+  color: var(--text);
+  font-size: 22px;
+}
+.site-title:hover { text-decoration: none; color: var(--accent); }
+
+.site-nav .page-link {
+  color: var(--text);
+  padding: 4px 12px;
+  border-radius: 999px;
+  transition: background .2s, color .2s;
+}
+.site-nav .page-link:not(:last-child) { margin-right: 4px; }
+.site-nav .page-link:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .site-nav {
+    background: var(--surface);
+    border-color: var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+  }
+  .site-nav .menu-icon > svg path { fill: var(--text); }
+  .site-nav .page-link { display: block; margin: 2px 0; }
+}
+
+/* ---------- 首頁開頭 ---------- */
+.home > .page-heading {
+  font-size: 40px;
+  margin: 24px 0 8px;
+}
+.home > .page-heading + p {
+  font-size: 19px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.post-list-heading {
+  font-size: 22px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+/* ---------- 文章列表變成卡片 ---------- */
+.post-list > li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+.post-list > li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45, 42, 38, .1);
+}
+.post-list h3 { margin: 4px 0 0; }
+
+.post-link,
+.post-link:visited {
+  font-size: 22px;
+  color: var(--text);
+}
+.post-link:hover { color: var(--accent); text-decoration: none; }
+
+.post-meta {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 專案紀錄、生活紀錄頁的列表 */
+.post-content ul:not(.task-list) > li > a { font-weight: 500; }
+
+.rss-subscribe { display: none; }
+
+/* ---------- 文章內容 ---------- */
+.post-title, .page-heading {
+  font-size: 34px;
+  line-height: 1.4;
+}
+.post-header { margin-bottom: 32px; }
+
+.post-content h2 {
+  font-size: 26px;
+  margin-top: 40px;
+  padding-left: 12px;
+  border-left: 4px solid var(--accent);
+}
+.post-content h3 { font-size: 21px; margin-top: 28px; }
+
+.post-content img {
+  display: block;
+  margin: 24px auto;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+blockquote {
+  color: var(--muted);
+  border-left: 4px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 18px;
+  font-style: normal;
+  letter-spacing: .02em;
+}
+
+/* 程式碼 */
+code, pre {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: "Cascadia Code", Consolas, Menlo, monospace;
+  font-size: 14px;
+}
+code { background: var(--accent-soft); padding: 2px 6px; }
+pre { padding: 14px 18px; background: var(--surface); }
+pre > code { background: none; border: 0; padding: 0; }
+.highlighter-rouge .highlight, pre.highlight { background: var(--surface); }
+
+/* 深色模式時程式碼區塊維持淺底，語法顏色才看得清楚 */
+@media (prefers-color-scheme: dark) {
+  .highlighter-rouge .highlight, pre.highlight, pre { background: #f4f1ea; color: #2d2a26; }
+}
+
+/* 表格 */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  color: var(--text);
+}
+table th { background: var(--accent-soft); border: 0; }
+table td, table th { border: 0; border-top: 1px solid var(--border); padding: 10px 14px; }
+table tr:nth-child(even) { background: transparent; }
+table tr:first-child th { border-top: 0; }
+
+/* ---------- 頁尾 ---------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+.footer-heading { color: var(--text); }
+.site-footer .svg-icon { fill: var(--muted); }
