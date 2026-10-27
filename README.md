@@ -23,3 +23,11 @@
 2. 複製 `_drafts/project-template.md` 到 `_posts/`，檔名改成 `年-月-日-英文名稱.md`
 3. 改開頭的 `title`、`cover`（封面圖路徑）、`description`（卡片上的一句話介紹），想放照片牆就填 `gallery`
 4. 下面寫詳細內容，然後 push
+
+## 怎麼寫學習紀錄
+
+1. 複製 `_drafts/learning-template.md` 到 `_posts/`，檔名改成 `年-月-日-英文名稱.md`
+2. `categories` 第二個值填分區的 id，例如資安區是 `security`
+3. 寫完 push，文章會出現在「學習紀錄 → 該分區」，也會出現在首頁的最新更新
+
+新增分區：在 `_data/learning.yml` 加一筆，再複製 `learning/security.md` 成 `learning/<id>.md`，把裡面的 `security` 換掉。

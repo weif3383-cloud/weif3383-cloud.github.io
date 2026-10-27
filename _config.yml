@@ -1,6 +1,6 @@
 # 網站基本設定（改完 push 上去就會更新）
 title: Jelly
-description: 關於我、專案紀錄與生活日記
+description: 關於我、專案紀錄、學習紀錄與生活日記
 author: weif3383-cloud
 lang: zh-TW
 timezone: Asia/Taipei
@@ -12,6 +12,7 @@ permalink: /:year/:month/:day/:title/
 header_pages:
   - about.md
   - projects.md
+  - learning.md
   - life.md
 
 # 頁尾顯示 GitHub 連結

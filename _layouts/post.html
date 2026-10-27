@@ -73,6 +73,12 @@ layout: default
 
   {%- if page.categories contains "project" -%}
   <p class="post-back"><a href="{{ "/projects/" | relative_url }}">← 回到專案紀錄</a></p>
+  {%- elsif page.categories contains "learning" -%}
+  {%- for section in site.data.learning -%}
+    {%- if page.categories contains section.id -%}
+  <p class="post-back"><a href="{{ "/learning/" | append: section.id | append: "/" | relative_url }}">← 回到{{ section.name }}</a></p>
+    {%- endif -%}
+  {%- endfor -%}
   {%- endif -%}
 
   {%- if site.disqus.shortname -%}

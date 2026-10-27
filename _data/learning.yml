@@ -1,0 +1,8 @@
+# 學習紀錄的分區。新增分區時：
+#   1. 在下面加一筆（id 只能用英文小寫，文章的 categories 會用到）
+#   2. 複製 learning/security.md 改成 learning/<id>.md，把裡面的 security 換成新的 id
+- id: security
+  name: 資安區
+  icon: 資                                     # 沒有封面圖時顯示的字
+  cover: /assets/images/learning/security.jpg   # 卡片封面，建議 16:9
+  description: CTF 解題、漏洞原理、工具與環境的筆記。

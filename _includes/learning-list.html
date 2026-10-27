@@ -1,0 +1,22 @@
+{%- comment -%}
+  學習分區的文章列表：列出 categories 裡有 page.section 的文章，最新的在最上面。
+{%- endcomment -%}
+{%- assign section = site.data.learning | where: "id", page.section | first -%}
+{%- if section.description -%}<p>{{ section.description }}</p>{%- endif -%}
+{%- assign notes = site.categories[page.section] -%}
+{%- if notes and notes.size > 0 -%}
+<ul class="note-list">
+{%- for post in notes -%}
+  <li>
+    <a class="note-item" href="{{ post.url | relative_url }}">
+      <span class="note-title">{{ post.title | escape }}</span>
+      {%- if post.description -%}<span class="note-desc">{{ post.description | escape }}</span>{%- endif -%}
+      <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+    </a>
+  </li>
+{%- endfor -%}
+</ul>
+{%- else -%}
+<p class="post-empty">還沒有文章，敬請期待！</p>
+{%- endif -%}
+<p class="post-back"><a href="{{ "/learning/" | relative_url }}">← 回到學習紀錄</a></p>
