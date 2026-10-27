@@ -26,6 +26,51 @@ layout: default
     {{ content }}
   </div>
 
+  {%- comment -%}
+    配圖欄：文章開頭的 gallery 列出照片，會在內容下方排成照片牆，點照片可以放大。
+  {%- endcomment -%}
+  {%- if page.gallery -%}
+  <section class="post-gallery">
+    <h2>照片</h2>
+    <div class="gallery-grid">
+      {%- for item in page.gallery -%}
+      <figure class="gallery-item">
+        <a href="{{ item.image | relative_url }}" class="gallery-link">
+          <img src="{{ item.image | relative_url }}" alt="{{ item.caption | default: page.title | escape }}" loading="lazy">
+        </a>
+        {%- if item.caption -%}<figcaption>{{ item.caption | escape }}</figcaption>{%- endif -%}
+      </figure>
+      {%- endfor -%}
+    </div>
+  </section>
+
+  <div class="lightbox" hidden>
+    <button type="button" class="lightbox-close" aria-label="關閉">×</button>
+    <img class="lightbox-img" alt="">
+    <p class="lightbox-caption"></p>
+  </div>
+  <script>
+    // 點照片放大，點背景、× 或按 Esc 關閉
+    (function () {
+      var box = document.querySelector(".lightbox");
+      var img = box.querySelector(".lightbox-img");
+      var cap = box.querySelector(".lightbox-caption");
+      function close() { box.hidden = true; img.src = ""; }
+      document.querySelectorAll(".gallery-link").forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          var fig = link.closest("figure").querySelector("figcaption");
+          img.src = link.href;
+          cap.textContent = fig ? fig.textContent : "";
+          box.hidden = false;
+        });
+      });
+      box.addEventListener("click", function (e) { if (e.target !== img) close(); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    })();
+  </script>
+  {%- endif -%}
+
   {%- if page.categories contains "project" -%}
   <p class="post-back"><a href="{{ "/projects/" | relative_url }}">← 回到專案紀錄</a></p>
   {%- endif -%}

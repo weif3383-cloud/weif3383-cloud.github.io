@@ -5,6 +5,11 @@ title: 專案名稱
 categories: project
 cover: /assets/images/projects/robot-vacuum.jpg   # 封面圖，建議 16:9（例如 1280x720）
 description: 一句話介紹，會顯示在專案卡片上，吸引別人點進來
+gallery:   # 配圖欄：會在內容下方排成照片牆，點了可以放大（不需要可以整段刪掉）
+  - image: /assets/images/projects/robot-vacuum/01.jpg
+    caption: 照片說明（可以不寫）
+  - image: /assets/images/projects/robot-vacuum/02.jpg
+    caption: 照片說明
 ---
 
 ## 這是什麼

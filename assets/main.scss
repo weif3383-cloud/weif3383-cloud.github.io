@@ -181,12 +181,28 @@ code, pre {
 code { background: var(--accent-soft); padding: 2px 6px; }
 pre { padding: 14px 18px; background: var(--surface); }
 pre > code { background: none; border: 0; padding: 0; }
-.highlighter-rouge .highlight, pre.highlight { background: var(--surface); }
-
-/* 深色模式時程式碼區塊維持淺底，語法顏色才看得清楚 */
-@media (prefers-color-scheme: dark) {
-  .highlighter-rouge .highlight, pre.highlight, pre { background: #f4f1ea; color: #2d2a26; }
+/* 有標語言的程式碼區塊（```cpp、```python⋯）：VS Code 深色配色，淺色、深色模式都一樣 */
+.highlighter-rouge .highlight,
+pre.highlight {
+  background: #1e1e1e;
+  border-color: #1e1e1e;
+  color: #d4d4d4;
+  line-height: 1.6;
+  color-scheme: dark;   /* 捲軸也用深色 */
 }
+.highlight * { font-weight: normal !important; font-style: normal !important; background: none !important; }  /* 蓋掉主題內建的粗體、斜體 */
+.highlight .c, .highlight .c1, .highlight .cm, .highlight .cs, .highlight .ch { color: #6a9955; }  /* 註解 */
+.highlight .cp, .highlight .cpf { color: #c586c0; }                                            /* #include */
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kr, .highlight .kp, .highlight .kc { color: #569cd6; }  /* 關鍵字 */
+.highlight .kt, .highlight .nc, .highlight .nn { color: #4ec9b0; }                             /* 型別、類別 */
+.highlight .nf, .highlight .fm, .highlight .nb, .highlight .bp { color: #dcdcaa; }             /* 函式 */
+.highlight .n, .highlight .nv, .highlight .na, .highlight .nx, .highlight .vi, .highlight .vg { color: #9cdcfe; }  /* 變數 */
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sb, .highlight .sc, .highlight .sd,
+.highlight .sh, .highlight .si, .highlight .sx, .highlight .sr, .highlight .ss, .highlight .dl { color: #ce9178; }  /* 字串 */
+.highlight .se { color: #d7ba7d; }                                                              /* \n 這類跳脫字元 */
+.highlight .m, .highlight .mi, .highlight .mf, .highlight .mh, .highlight .mo, .highlight .il { color: #b5cea8; }  /* 數字 */
+.highlight .o, .highlight .ow, .highlight .p { color: #d4d4d4; }                               /* 運算子、括號 */
+.highlight .err { color: #f44747; }
 
 /* 表格 */
 table {
@@ -197,7 +213,7 @@ table {
   overflow: hidden;
   color: var(--text);
 }
-table th { background: var(--accent-soft); border: 0; }
+table th { background: var(--accent-soft); border: 0; white-space: nowrap; }
 table td, table th { border: 0; border-top: 1px solid var(--border); padding: 10px 14px; }
 table tr:nth-child(even) { background: transparent; }
 table tr:first-child th { border-top: 0; }
@@ -388,3 +404,95 @@ table tr:first-child th { border-top: 0; }
   margin: -8px 0 32px;
 }
 .post-back { margin-top: 40px; }
+
+/* ---------- 專案文章：配圖欄（照片牆 + 點擊放大） ---------- */
+.post-gallery { margin-top: 40px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+.gallery-item { margin: 0; }
+.gallery-link {
+  display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  cursor: zoom-in;
+}
+.gallery-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s ease;
+}
+.gallery-link:hover img { transform: scale(1.05); }
+.gallery-item figcaption {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, .85);
+  cursor: zoom-out;
+}
+.lightbox[hidden] { display: none; }
+.lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  border-radius: 8px;
+  cursor: default;
+}
+.lightbox-caption { color: #eee; margin-top: 12px; text-align: center; }
+.lightbox-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: 0;
+  background: none;
+  color: #fff;
+  font-size: 36px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ---------- 可展開區塊（例如很長的程式碼） ---------- */
+details {
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  overflow: hidden;
+}
+details > summary {
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--accent);
+  user-select: none;
+}
+details > summary:hover { background: var(--accent-soft); }
+details[open] > summary { border-bottom: 1px solid var(--border); }
+details > .highlighter-rouge, details > div > pre { margin: 0; }
+details pre { border: 0; border-radius: 0; max-height: 70vh; overflow: auto; }
+
+/* 圖片下方緊接的 *斜體字* 當作圖說：小字、置中、不斜 */
+.post-content img + em {
+  display: block;
+  margin-top: -12px;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  color: var(--muted);
+}
