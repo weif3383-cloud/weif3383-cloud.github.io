@@ -511,7 +511,7 @@ html{scroll-behavior:smooth}
 (e) Any five vectors in \(\mathbb R^4\) are linearly dependent.<br>
 (f) For any 3×2 matrix A, the range of x ↦ Ax is all of \(\mathbb R^3\).<br>
 (g) If T is linear, then \(T(\mathbf 0)=\mathbf 0\).</p>
-<details><summary>Show answer</summary><div class="ans">(a) F: row operations never change the solution set. (b) F: the RREF is unique (Thm 1). (c) T: x = 0 always works. (d) F: only <i>at least one</i> vector must be (Thm 7). (e) T: 5 &gt; 4 (Thm 8). (f) F: only 2 columns, so at most 2 pivots for 3 rows; the columns cannot span \(\mathbb R^3\). (g) T.</div></details></div>
+<details><summary>Show answer</summary><div class="ans">(a) <b>False</b>: row operations never change the solution set.<br>(b) <b>False</b>: the RREF is unique (Thm 1).<br>(c) <b>True</b>: x = 0 always works.<br>(d) <b>False</b>: only <i>at least one</i> vector must be (Thm 7).<br>(e) <b>True</b>: 5 &gt; 4 (Thm 8).<br>(f) <b>False</b>: only 2 columns, so at most 2 pivots for 3 rows; the columns cannot span \(\mathbb R^3\).<br>(g) <b>True</b>: \(T(\mathbf 0)=T(0\cdot\mathbf 0)=0\cdot T(\mathbf 0)=\mathbf 0\).</div></details></div>
 
 <div class="q"><div class="qhead"><span class="qno">Q27</span><span class="src">T/F · §2.1–2.3</span></div>
 <p>True or False? Justify.<br>
@@ -522,7 +522,7 @@ html{scroll-behavior:smooth}
 (e) If the columns of an n×n A span \(\mathbb R^n\), then they are linearly independent.<br>
 (f) If an n×n A has n pivot positions, then Ax = 0 has a nontrivial solution.<br>
 (g) If A is invertible, then \(A^T\) is invertible.</p>
-<details><summary>Show answer</summary><div class="ans">(a) F: \((AB)^T=B^TA^T\). (b) F: \((AB)^{-1}=B^{-1}A^{-1}\). (c) T: A is not invertible, so IMT (d) fails. (d) T: A is invertible, \(\mathbf x=A^{-1}\mathbf b\) (Thm 5). (e) T (IMT h ⇔ e). (f) F: n pivots means only the trivial solution (IMT c ⇔ d). (g) T (IMT a ⇔ l).</div></details></div>
+<details><summary>Show answer</summary><div class="ans">(a) <b>False</b>: \((AB)^T=B^TA^T\) (order reverses).<br>(b) <b>False</b>: \((AB)^{-1}=B^{-1}A^{-1}\) (order reverses).<br>(c) <b>True</b>: \(ad-bc=0\) means A is not invertible, so IMT (d) fails.<br>(d) <b>True</b>: row equivalent to \(I_n\) means A is invertible, so \(\mathbf x=A^{-1}\mathbf b\) is the unique solution (Thm 5).<br>(e) <b>True</b>: IMT (h) ⇔ (e).<br>(f) <b>False</b>: n pivots means Ax = 0 has <i>only</i> the trivial solution (IMT (c) ⇔ (d)).<br>(g) <b>True</b>: IMT (a) ⇔ (l).</div></details></div>
 
 <div class="q"><div class="qhead"><span class="qno">Q28</span><span class="src">§2.3 · IMT reasoning</span></div>
 <p>(a) Can a square matrix with a row of zeros be invertible? (b) A is 4×4 and Ax = 0 has a nontrivial solution. Can the columns of A span \(\mathbb R^4\)? (c) If n×n matrices A and B satisfy AB = I, must BA = I?</p>
