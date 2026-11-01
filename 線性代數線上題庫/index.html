@@ -91,7 +91,7 @@ html{scroll-behavior:smooth}
 </header>
 
 <nav class="chips" aria-label="章節">
-  <a href="#s11">1.1 線性系統</a><a href="#s12">1.2 列化簡</a><a href="#s13">1.3 向量方程</a><a href="#s14">1.4 Ax=b</a><a href="#s15">1.5 解集合</a><a href="#s17">1.7 線性獨立</a><a href="#s18">1.8 線性變換</a><a href="#s21">2.1 矩陣運算</a><a href="#s22">2.2 反矩陣</a><a href="#s23">2.3 可逆矩陣定理</a><a href="#quiz">模擬考</a>
+  <a href="#s11">1.1 線性系統</a><a href="#s12">1.2 列化簡</a><a href="#s13">1.3 向量方程</a><a href="#s14">1.4 Ax=b</a><a href="#s15">1.5 解集合</a><a href="#forms">解的表示法</a><a href="#s17">1.7 線性獨立</a><a href="#s18">1.8 線性變換</a><a href="#s21">2.1 矩陣運算</a><a href="#s22">2.2 反矩陣</a><a href="#s23">2.3 可逆矩陣定理</a><a href="#quiz">模擬考</a>
 </nav>
 
 <!-- 1.1 -->
@@ -200,6 +200,47 @@ html{scroll-behavior:smooth}
 <p>(For \([A\ \mathbf 0]\) the same row operations give the same left part with a last column of zeros.)</p>
 <p>Homogeneous: \(x_1=7x_3,\ x_2=-2x_3\) → \(\mathbf x = x_3\begin{bmatrix}7\\-2\\1\end{bmatrix}\), a line through the origin.</p>
 <p>Nonhomogeneous: \(x_1 = 1+7x_3,\ x_2 = 1-2x_3\) → \(\mathbf x = \begin{bmatrix}1\\1\\0\end{bmatrix} + x_3\begin{bmatrix}7\\-2\\1\end{bmatrix} = \mathbf p + t\mathbf v\): the same line shifted by \(\mathbf p\). Check: \(A\mathbf p = (1+2,\ 2+5,\ -1-1) = (3,7,-2)=\mathbf b\) ✓.</p></div>
+</section>
+
+<!-- forms -->
+<section class="sec" id="forms">
+<h2><span class="no">對照</span>解的表示法 Solution Forms</h2>
+<p>同一組解有好幾種寫法。以 Example 8 為例：\([A\ \mathbf b]\sim\begin{bmatrix}1&0&-7&1\\0&1&2&1\\0&0&0&0\end{bmatrix}\)，pivot 在第 1、2 行 → \(x_1,x_2\) 是 basic，\(x_3\) 是 free。</p>
+<div class="tbl"><table>
+<tr><th>名稱</th><th>寫法（本例）</th><th>重點</th></tr>
+<tr><td><b>General solution</b><br>一般解</td><td>\(x_1=1+7x_3\)<br>\(x_2=1-2x_3\)<br>\(x_3\) is free</td><td>basic 用 free 表示，移項要變號；<b>一定要寫「free」</b></td></tr>
+<tr><td><b>Parametric vector form</b><br>參數向量形式</td><td>\(\mathbf x=\begin{bmatrix}1\\1\\0\end{bmatrix}+x_3\begin{bmatrix}7\\-2\\1\end{bmatrix}=\mathbf p+t\mathbf v\)</td><td>依 free variable 拆開；<b>v 在 free 的位置放 1</b>，p 在該位置放 0</td></tr>
+<tr><td><b>Particular solution</b><br>特解 p</td><td>\(\mathbf p=(1,1,0)\)</td><td>某一個具體解，通常取 free = 0（取別的值也是特解）</td></tr>
+<tr><td><b>Ax = 0 的解</b><br>homogeneous</td><td>\(\mathbf x=x_3\begin{bmatrix}7\\-2\\1\end{bmatrix}\)</td><td>同一個 v、沒有 p。x = 0 是 trivial；<b>有 free variable 才有 nontrivial</b></td></tr>
+<tr><td><b>Span 表示</b></td><td>Ax = 0：\(\text{Span}\{\mathbf v\}\)<br>Ax = b：\(\mathbf p+\text{Span}\{\mathbf v\}\)</td><td>Ax = b（b ≠ 0）的解集合<b>不是</b> span，不含 0 向量</td></tr>
+<tr><td><b>Geometric</b><br>幾何描述</td><td>過 \((1,1,0)\)、平行 \((7,-2,1)\) 的直線</td><td>= Ax = 0 的解（過原點的直線）平移 p（Thm 6）</td></tr>
+</table></div>
+
+<h3>free variable 個數決定形狀</h3>
+<div class="tbl"><table>
+<tr><th>free 個數</th><th>Ax = 0</th><th>Ax = b（有解時）</th></tr>
+<tr><td>0</td><td>只有 x = 0</td><td>唯一一點，例：\(\mathbf x=(2,-1,3)\)，不用寫 free</td></tr>
+<tr><td>1</td><td>過原點的直線 \(t\mathbf v\)</td><td>過 p 的平行直線 \(\mathbf p+t\mathbf v\)</td></tr>
+<tr><td>2</td><td>過原點的平面 \(s\mathbf u+t\mathbf v\)</td><td>過 p 的平行平面 \(\mathbf p+s\mathbf u+t\mathbf v\)</td></tr>
+</table></div>
+<p>出現 \([\,0\ \cdots\ 0 \mid 5\,]\)：直接寫 <b>inconsistent, no solution</b>，不用寫任何形式。</p>
+
+<div class="ex"><div class="tag">Two free variables</div>
+<p>RREF \(\begin{bmatrix}1&3&0&-2&4\\0&0&1&5&-1\end{bmatrix}\) → \(x_1=4-3x_2+2x_4,\ x_2\) free, \(x_3=-1-5x_4,\ x_4\) free</p>
+\[\mathbf x=\begin{bmatrix}4\\0\\-1\\0\end{bmatrix}+x_2\begin{bmatrix}-3\\1\\0\\0\end{bmatrix}+x_4\begin{bmatrix}2\\0\\-5\\1\end{bmatrix}\]
+<p>\(x_2\) 的向量第 2 格放 1、第 4 格放 0；\(x_4\) 的向量第 4 格放 1、第 2 格放 0。</p></div>
+
+<h3>看題目用字決定寫法</h3>
+<div class="tbl"><table>
+<tr><th>題目說</th><th>要寫</th></tr>
+<tr><td><i>Find the general solution</i></td><td>一般解（一條一條，標明 free）</td></tr>
+<tr><td><i>Write … in parametric vector form</i></td><td>\(\mathbf x=\mathbf p+t\mathbf v\)</td></tr>
+<tr><td><i>Describe the solution set</i></td><td>參數向量形式最保險；問幾何就加直線或平面描述</td></tr>
+<tr><td><i>Describe all solutions of Ax = 0</i></td><td>\(\mathbf x=t\mathbf v\)（沒有 p）</td></tr>
+<tr><td><i>Does Ax = 0 have a nontrivial solution?</i></td><td>有沒有 free variable → Yes / No 加理由</td></tr>
+<tr><td><i>Give a geometric description / compare</i></td><td>直線或平面、過原點或過 p、平行哪個向量</td></tr>
+</table></div>
+<div class="key"><b>最常搞混：</b>① general solution 是方程式、parametric vector form 是向量相加，不確定就兩個都寫；② v 的 free 位置是 1 不是 0；③ Ax = 0 沒有 p；④ 「Ax = 0」本身是 implicit description，解出來的參數形式才是 explicit description。<br>練習：Q4（general solution）、Q9（參數形式＋幾何）、Q15（兩個 free variable）。</div>
 </section>
 
 <!-- 1.7 -->
