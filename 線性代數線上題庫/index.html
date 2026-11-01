@@ -91,8 +91,28 @@ html{scroll-behavior:smooth}
 </header>
 
 <nav class="chips" aria-label="章節">
-  <a href="#s11">1.1 線性系統</a><a href="#s12">1.2 列化簡</a><a href="#s13">1.3 向量方程</a><a href="#s14">1.4 Ax=b</a><a href="#s15">1.5 解集合</a><a href="#forms">解的表示法</a><a href="#s17">1.7 線性獨立</a><a href="#s18">1.8 線性變換</a><a href="#s21">2.1 矩陣運算</a><a href="#s22">2.2 反矩陣</a><a href="#s23">2.3 可逆矩陣定理</a><a href="#quiz">模擬考</a>
+  <a href="#plan">複習順序</a><a href="#s11">1.1 線性系統</a><a href="#s12">1.2 列化簡</a><a href="#s13">1.3 向量方程</a><a href="#s14">1.4 Ax=b</a><a href="#s15">1.5 解集合</a><a href="#forms">解的表示法</a><a href="#s17">1.7 線性獨立</a><a href="#s18">1.8 線性變換</a><a href="#s21">2.1 矩陣運算</a><a href="#s22">2.2 反矩陣</a><a href="#s23">2.3 可逆矩陣定理</a><a href="#quiz">模擬考</a>
 </nav>
+
+<!-- priority -->
+<section class="sec" id="plan">
+<h2><span class="no">先看</span>複習優先順序</h2>
+<p>已經讀過、只需要複習的話：<b>先寫題目，錯了才回去看該節</b>。依下面順序進行，前三個最重要。</p>
+<div class="tbl"><table>
+<tr><th>優先</th><th>單元</th><th>為什麼重要</th><th>先寫</th></tr>
+<tr><td rowspan="3"><b>★★★</b></td><td><a href="#s12">1.2 列化簡、pivot</a></td><td>每一題都要用；RREF、basic / free、Thm 2 判斷解的個數</td><td>Q4、Q5、Q24</td></tr>
+<tr><td><a href="#s23">2.3 可逆矩陣定理</a></td><td>串起 1.2–1.7 全部觀念，是非題最大來源；只用在方陣</td><td>Q22、Q23、Q27、Q28</td></tr>
+<tr><td><a href="#s17">1.7 線性獨立</a></td><td>找 h 使相依、不計算直接判斷（零向量、個數 &gt; 維度、成倍數）</td><td>Q11–Q13、Q25</td></tr>
+<tr><td rowspan="3"><b>★★</b></td><td><a href="#s22">2.2 反矩陣</a></td><td>2×2 公式、\([A\ I]\sim[I\ A^{-1}]\)、\((AB)^{-1}=B^{-1}A^{-1}\)；算錯一步全錯</td><td>Q20、Q21</td></tr>
+<tr><td><a href="#s14">1.4 Ax = b、Thm 4</a></td><td>每一列有 pivot ⇔ 每個 b 都有解 ⇔ 行向量 span \(\mathbb R^m\)</td><td>Q8、Q10</td></tr>
+<tr><td><a href="#forms">解的表示法</a></td><td>general solution 和 parametric vector form 容易搞混</td><td>Q4、Q9、Q15</td></tr>
+<tr><td rowspan="4"><b>★</b></td><td><a href="#s15">1.5 解集合</a></td><td>parametric vector form、Thm 6 平移</td><td>Q9</td></tr>
+<tr><td><a href="#s18">1.8 線性變換</a></td><td>\(T(\mathbf 0)\ne\mathbf 0\) ⇒ 非線性；用線性性質求像</td><td>Q14–Q16</td></tr>
+<tr><td><a href="#s21">2.1 矩陣運算</a></td><td>三大陷阱、\((AB)^T=B^TA^T\)</td><td>Q17–Q19</td></tr>
+<tr><td><a href="#s11">1.1</a>、<a href="#s13">1.3</a></td><td>都是列化簡的應用，1.2 熟了自然會</td><td>Q1–Q3、Q6、Q7</td></tr>
+</table></div>
+<div class="key"><b>做法：</b>① 依序寫 ★★★ 的題目，不看講義、手算；② 對答案按 ✓ / ✗，錯的才回去讀該節觀念和例題；③ 再往 ★★、★ 進行；④ 考前一天把錯過的題目和是非題 Q26、Q27 重寫一次。</div>
+</section>
 
 <!-- 1.1 -->
 <section class="sec" id="s11">
