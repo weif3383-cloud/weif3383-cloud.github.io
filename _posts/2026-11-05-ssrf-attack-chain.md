@@ -41,6 +41,42 @@ body 內容               ← POST 才有
 
 送純文字就有東西回來，是因為網站程式照它的邏輯回應了。HTTP 本質就是「送文字 → 收文字」，瀏覽器只是幫你自動化、再把結果畫成漂亮畫面。
 
+## curl：操控 HTTP 的每個部位
+
+`curl` 和 `nc` 做的事一樣（送 HTTP 請求、收回應），差別在它幫你把 HTTP 格式的雜事全自動化：你只給網址，它自動補好請求行、Host、算好 `Content-Length`——**nc 是手排，curl 是自排**。實戰幾乎都用 curl，nc 只在手刻怪請求或非 HTTP 連線時才出動。
+
+```
+# nc：整包手刻
+printf 'GET /flag.php HTTP/1.1\r\nHost: 10.99.0.3\r\n\r\n' | nc -C 10.99.0.3 80
+# curl：一行搞定
+curl http://10.99.0.3/flag.php
+```
+
+把一個 HTTP 請求想成一個包裹，每個參數操控它的一個部位：
+
+| 參數 | 操控部位 | 能做什麼 |
+|---|---|---|
+| `-X` | 方法（GET/POST/…） | 拿 / 送 / 改 / 刪資料 |
+| `-H` | 標頭 header | 身分、格式、自訂欄位 |
+| `-d` | body 內容 | 送帳密、表單、JSON |
+| `-b` | Cookie | 帶身分憑證，模擬已登入 |
+| `-i` | 顯示 response header | 看回應的標籤 |
+| `-v` | 顯示完整來回的 header | 看整個請求／回應全貌 |
+
+駭客的玩法就是偷偷改包裹的某個部位，看伺服器會不會被騙：改 `-H` 越權、改 `-d` 注入、改 `-b` 冒充。幾個練習題：
+
+- **帶 Cookie**（`-b`）：`curl -b "i_have_cookie=1" http://.../flag-cookie.php`。
+- **挖藏在 header 裡的東西**（`-i`）：畫面空白，但 flag 躲在 response header，`-i` 把它印出來。HTTP 回應不只有畫面，還有一堆標籤，只看畫面會漏掉。
+- **送 JSON**（`-X` + `-H` + `-d`）：`curl -X POST -H "Content-Type: application/json" -d '{"action":"getflag"}' http://.../flag-json.php`。送 JSON、收 JSON，就是現代 API 的標準長相。
+- **自訂 header**（`-H`）：`curl -H "X-CSRC-Token: paiwan" http://.../flag-custom-header.php`。
+
+會了這五個參數，就能完整操控一個請求的每個部位（方法、header、cookie、body），這是 Web 滲透最基本的底功。
+
+兩個想通的觀念：
+
+- **真實 cookie 為什麼是一長串亂碼？**因為 cookie 是「免登入的手環」，值必須隨機到沒人猜得出來。如果是 `1`、`2`、`3` 流水號，我把值改成 `2` 就冒充下一個人，寫個迴圈就整站帳號任我挑。凡是用來證明身分的東西（密碼、PIN、cookie、token）都必須長到、亂到無法被猜或試出來。
+- **「能發請求」不等於「有權限」。**任何人都能對公開伺服器發請求（像誰都能按門鈴），這擋不住；真正的關卡是伺服器收到後，會不會先檢查「你是誰、夠不夠格」再動作。做了動作卻沒檢查權限，就是 **Broken Access Control**（OWASP 排名第一的網站漏洞）。
+
 ## Burp Suite：攔截與改包
 
 Burp Suite 當「中間人」坐在瀏覽器和伺服器之間，讓你看到、攔下、修改每一個請求。
