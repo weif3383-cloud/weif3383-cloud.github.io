@@ -18,7 +18,8 @@ layout: default
       {%- endif -%}</p>
   </header>
 
-  {%- if page.cover -%}
+  {%- comment -%}封面圖預設顯示在標題下方；文章可設 show_cover: false 只拿它當卡片縮圖、內文不重複。{%- endcomment -%}
+  {%- if page.cover and page.show_cover != false -%}
   <img class="post-cover" src="{{ page.cover | relative_url }}" alt="{{ page.title | escape }}" itemprop="image">
   {%- endif -%}
 
