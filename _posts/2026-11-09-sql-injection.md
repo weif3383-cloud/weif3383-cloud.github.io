@@ -60,6 +60,7 @@ SQL 注入的根本病因，跟 XSS 是同一個：
 
 `username=''` 閉合 → `OR 1=1` 永真 → `-- ` 剪掉密碼檢查 → 直接登入成 admin。
 
+![LV1 登入繞過成功，拿到 flag](/assets/images/learning/day5/lv1-login-bypass.png)
 *不知道任何帳密，用 OR 1=1 直接登入成 admin*
 
 ## LV2 — UNION 注入 + information_schema
@@ -76,6 +77,7 @@ SQL 注入的根本病因，跟 XSS 是同一個：
 0 UNION SELECT group_concat(table_name),2,3,4 FROM information_schema.tables WHERE table_schema=database()-- -
 ```
 
+![LV2 用 information_schema 列出所有表格](/assets/images/learning/day5/lv2-enum.png)
 *information_schema 是資料庫「自己的目錄」，記著有哪些表、哪些欄——它是普通 SELECT，所以能塞進 UNION*
 
 學到最重要的一點：**一旦有注入點，透過子查詢能讀到整個資料庫的任何一張表**，不限於你注入的那張。開頭的 `0` 只是佔位值，讓前半段查空、畫面只剩偷來的資料。
@@ -96,6 +98,7 @@ sqlmap -u "http://靶機/feedback.php" --forms --batch --dump
 
 sqlmap 分兩階段：先偵測（怎麼注入），再 `--dump`（偷資料）——跟手動流程一樣，只是自動化。它會自動列舉資料庫、表、欄位，連「猜不到的隱藏表」都挖出來。
 
+![sqlmap 偵測出三種注入類型](/assets/images/learning/day5/lv3-sqlmap.png)
 *sqlmap 自動找到 boolean-based、error-based、time-based 三種注入——全是手動學過的技術的自動版*
 
 | 關卡 | 技術 | 方式 |
