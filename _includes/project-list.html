@@ -1,0 +1,23 @@
+{%- comment -%}
+  多版本專案的版本列表：列出 categories 裡有 page.project_section 的文章，最新的在最上面。
+  用法和 learning-list.html 一樣，給 projects/<id>.md 這種分組頁 include。
+{%- endcomment -%}
+{%- assign group = site.data.projects | where: "id", page.project_section | first -%}
+{%- if group.description -%}<p>{{ group.description }}</p>{%- endif -%}
+{%- assign posts = site.categories[page.project_section] -%}
+{%- if posts and posts.size > 0 -%}
+<ul class="note-list">
+{%- for post in posts -%}
+  <li>
+    <a class="note-item" href="{{ post.url | relative_url }}">
+      <span class="note-title">{{ post.title | escape }}</span>
+      {%- if post.description -%}<span class="note-desc">{{ post.description | escape }}</span>{%- endif -%}
+      <span class="post-meta">{{ post.date | date: "%Y-%m-%d" }}</span>
+    </a>
+  </li>
+{%- endfor -%}
+</ul>
+{%- else -%}
+<p class="post-empty">還沒有文章，敬請期待！</p>
+{%- endif -%}
+<p class="post-back"><a href="{{ "/projects/" | relative_url }}">← 回到專案紀錄</a></p>

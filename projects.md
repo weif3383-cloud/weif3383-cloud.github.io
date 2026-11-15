@@ -7,12 +7,30 @@ permalink: /projects/
 做過的東西都整理在這裡，最新的在最上面。
 
 {% comment %}
-  每個專案是一張卡片：上面是封面圖（文章的 cover），下面是標題、簡介（description）和日期。
-  點卡片會進到專案的詳細介紹。沒有設定封面時，會用標題第一個字當封面。
+  兩種卡片：
+  1. 多版本專案（_data/projects.yml）：一張卡片進去看各版本，像掃地機器人。
+  2. 單篇專案（categories: project）：點卡片直接進到那篇介紹。
+  沒有封面時，用名稱第一個字當封面。
 {% endcomment %}
-{%- assign projects = site.categories.project -%}
-{%- if projects and projects.size > 0 -%}
 <div class="project-grid">
+{%- for group in site.data.projects -%}
+  {%- assign posts = site.categories[group.id] -%}
+  <a class="project-card" href="{{ "/projects/" | append: group.id | append: "/" | relative_url }}">
+    <div class="project-thumb">
+      {%- if group.cover -%}
+      <img src="{{ group.cover | relative_url }}" alt="{{ group.name }}" loading="lazy">
+      {%- else -%}
+      <span class="project-thumb-text">{{ group.name | slice: 0 }}</span>
+      {%- endif -%}
+    </div>
+    <div class="project-info">
+      <h3 class="project-title">{{ group.name }}</h3>
+      <p class="project-desc">{{ group.description }}</p>
+      <span class="post-meta">{% if posts %}{{ posts.size }} 篇{% else %}還沒有文章{% endif %}</span>
+    </div>
+  </a>
+{%- endfor -%}
+{%- assign projects = site.categories.project -%}
 {%- for post in projects -%}
   <a class="project-card" href="{{ post.url | relative_url }}">
     <div class="project-thumb">
@@ -30,6 +48,3 @@ permalink: /projects/
   </a>
 {%- endfor -%}
 </div>
-{%- else -%}
-<p class="post-empty">還沒有文章，敬請期待！</p>
-{%- endif -%}

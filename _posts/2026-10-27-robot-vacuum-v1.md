@@ -1,6 +1,6 @@
 ---
 title: 掃地機器人第一版：能跑就行 XD
-categories: project
+categories: robot-vacuum
 # cover: /assets/images/projects/robot-vacuum/cover.jpg   # 封面圖還沒決定，先用標題第一個字
 description: 這是用來測試的初號機，目前只有跑的功能。
 gallery:

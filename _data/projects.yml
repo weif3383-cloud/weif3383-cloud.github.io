@@ -1,0 +1,10 @@
+# 多版本專案的分區（像掃地機器人有好幾版，一張卡片進去看各版本）。
+# 新增一個多版本專案時：
+#   1. 在下面加一筆（id 只能用英文小寫，文章的 categories 會用到）
+#   2. 複製 projects/robot-vacuum.md 改成 projects/<id>.md，把裡面的 robot-vacuum 換成新的 id
+#   3. 該專案每一版的 _posts 檔，categories 設成這個 id（例如 categories: robot-vacuum）
+# 只有單篇的專案不用寫在這裡，直接 categories: project 就會出現在專案紀錄。
+- id: robot-vacuum
+  name: 掃地機器人
+  cover: /assets/images/projects/robot-vacuum/v2-02-overview.jpg   # 卡片封面，建議 16:9
+  description: ESP32 自走車：從只會跑的初號機，到加裝陀螺儀、編碼器校正的第二版。
